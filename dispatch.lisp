@@ -1,1 +1,1 @@
-(dispatch "/" method-a)
+(dispatch "/" my-handler)
