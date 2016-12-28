@@ -1,4 +1,5 @@
 (load "request.lisp")
 (load "utils.lisp")
+(load "handlers.lisp")
 (load "dispatch.lisp")
 (start-web)
