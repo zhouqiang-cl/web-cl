@@ -1,4 +1,6 @@
 (load "request.lisp")
+(load "packages.lisp")
+(in-package :web-cl)
 (load "utils.lisp")
 (load "handlers.lisp")
 (load "dispatch.lisp")
