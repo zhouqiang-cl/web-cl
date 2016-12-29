@@ -1,1 +1,1 @@
-(dispatch '(("/" my-handler)))
+(dispatch '(("/index" index-handler)))
