@@ -1,1 +1,14 @@
-<h1>hello world</h1>
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap3-wysihtml5.min.css"></link>
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"></link>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap3-wysihtml5.all.min.js"></script>
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="screen" charset="utf-8">
+<h3>Zhou Qiang's Blog</h3>
+<div class="editor">
+    <textarea id="blog-textarea" placeholder="写..."></textarea>
+    <button id="submit">提交</button>
+</div>
+<script type="text/javascript">
+    $('#blog-textarea').wysihtml5();
+</script>
