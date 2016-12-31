@@ -1,18 +1,27 @@
+<head>
+<link rel="stylesheet" href="/static/css/simplemde.min.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="screen" charset="utf-8">
 <script src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/simplemde.min.js"></script>
 <script type="text/javascript" src="/static/js/web.js"></script>
+<title>Free</title>
+</head>
 
-<link rel="stylesheet" href="/static/css/simplemde.min.css" type="text/css" media="screen" charset="utf-8">
-<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="screen" charset="utf-8">
-<h3>Zhou Qiang's Blog</h3>
-<div class="editor">
-    <textarea id="blog-textarea" placeholder="写..."></textarea>
-    <button id="submit">提交</button>
+<div class="editor_area">
+    <div class="input-group">
+        <input type="text" class="form-control" aria-label="..." id="title" placeholder="标题">
+    </div>
+    <div class="editor">
+        <textarea id="blog-textarea" placeholder="写..."></textarea>
+    </div>
+    <button id="submit" class="btn">提交</button>
 </div>
 <script type="text/javascript">
     var simplemde = new SimpleMDE({ element: $("#blog-textarea")[0] });
     $('#submit').click(function () {
         var content = simplemde.value();
-        post_article("test",content)
+        var title = $("#title").val()
+        post_article(title,content)
     })
 </script>
