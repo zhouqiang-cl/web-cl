@@ -2,4 +2,4 @@
 
 (defpackage #:web-cl
   (:nicknames #:webcl)
-  (:use :hunchentoot :cl))
+  (:use :hunchentoot :cl :uuid :cl-json))

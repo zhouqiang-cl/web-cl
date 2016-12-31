@@ -7,8 +7,9 @@
 #blog-textarea {
     width: 80%;
     height: 400px;
-    /*display: block;*/
+    display: block;
 }
 #submit {
+    margin-top: 20px;
     margin-left: 75%;
 }

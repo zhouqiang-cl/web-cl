@@ -1,2 +1,7 @@
 (defun my-handler () (format nil "hello world"))
 (defun index-handler () (rander "templates/index.html"))
+(defun upload-article () 
+    (let ((title (post-parameter "title"))
+            (content (post-parameter "content"))
+            (itemid (genitemid)))
+    (save-article itemid title content)))

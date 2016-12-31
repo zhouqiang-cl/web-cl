@@ -3,6 +3,7 @@
 <script src="/static/js/jquery.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/bootstrap3-wysihtml5.all.min.js"></script>
+<script type="text/javascript" src="/static/js/web.js"></script>
 <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="screen" charset="utf-8">
 <h3>Zhou Qiang's Blog</h3>
 <div class="editor">
@@ -11,4 +12,8 @@
 </div>
 <script type="text/javascript">
     $('#blog-textarea').wysihtml5();
+    $('#submit').click(function () {
+        var content = $("#blog-textarea").val()
+        post_article("test",content)
+    })
 </script>
