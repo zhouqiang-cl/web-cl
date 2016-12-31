@@ -15,10 +15,15 @@
 (defun genitemid ()  (uuid-to-string (make-v4-uuid)))
 
 (defun save-article (itemid title content)
-    (format nil 
-        (unescape_url
-            (encode-json-plist-to-string 
-                (list "id" itemid "url" (princ (concatenate 'string "/blog/items/" itemid)))))))
+    (progn (store-to-db itemid title content)
+        (format nil 
+            (unescape_url
+                (encode-json-plist-to-string 
+                    (list "id" itemid "url" (princ (concatenate 'string "/blog/items/" itemid))))))))
+
+(defun store-to-db (itemid title content)
+    (progn (db.use "blog")
+        (db.insert itemid (kv (kv "title" title) (kv "content" content)))))
 
 (defun unescape_url (s) (remove #\\ s))
 
