@@ -4,7 +4,8 @@
                     (apply 'create-prefix-dispatcher args)) dispatch-table)))
 
 (defun rander (path)
-    (handle-static-file path "text/html; charset=utf-8"))
+    (let ((mime-type (get-file-mime-type path)))
+         (handle-static-file path mime-type)))
 
 (defun serve-static-dir ()
     (let ((path (string-left-trim "/" (request-uri*)))) (rander path)))
@@ -27,4 +28,16 @@
 
 (defun unescape_url (s) (remove #\\ s))
 
+(defun init-mime-table (table-content mime-table)
+    (mapcar (lambda (args) 
+        (setf (gethash  (intern (string-upcase (car args))) mime-table) (cadr args))) table-content))
+
+(defun get-mime-type (mime)
+    (let ((type (gethash (intern (string-upcase mime)) *mime-table*)))
+        (if type
+            type
+            (gethash (intern (string-upcase "default")) *mime-table*))))
+
+(defun get-file-mime-type (filename) 
+    (get-mime-type (car (reverse (split-sequence:split-sequence #\. filename)))))
 (defun start-web () (start (make-instance 'easy-acceptor :port 8080)))
