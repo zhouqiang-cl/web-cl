@@ -3,7 +3,7 @@ function post_article(title, content) {
     data["title"] = title;
     data["content"] = content;
     $.ajax({
-        url:"/api/v1/items",
+        url:"/api/v1/blog/articles",
         type:"POST",
         dataType:"json",
         async:"false",
@@ -11,6 +11,7 @@ function post_article(title, content) {
         success: function (data) {
             item_id = data["id"];
             url =  data["url"];
+            window.location.href = url
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);
@@ -22,7 +23,7 @@ function update_article(title, content, item_id) {
     data = {};
     data["title"] = title;
     data["content"] = content;
-    url = "/api/v1/items/" + item_id
+    url = "/api/v1/blog/articles" + item_id
     $.ajax({
         url:url,
         type:"PUT",
@@ -32,6 +33,7 @@ function update_article(title, content, item_id) {
         success: function (data) {
             item_id = data["id"];
             url =  data["url"];
+            window.location(url)
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);
@@ -40,7 +42,7 @@ function update_article(title, content, item_id) {
 }
 
 function get_article(item_id) {
-    url = "/api/v1/items/" + item_id
+    url = "/api/v1/blog/articles" + item_id
     $.ajax({
         url:url,
         type:"GET",
@@ -56,7 +58,7 @@ function get_article(item_id) {
 }
 
 function get_articles() {
-    url = "/api/v1/items"
+    url = "/api/v1/blog/articles"
     $.ajax({
         url:url,
         type:"GET",

@@ -1,5 +1,5 @@
 (dispatch '(("/write" write-handler)
     ("/static" serve-static-dir)
-    ("/api/v1/items" upload-article)
-    ("/articles" article-handler)
+    ("/api/v1/blog/articles" articles-handler)
+    ("/blog/articles" article-handler)
     ("/" index-handler)))

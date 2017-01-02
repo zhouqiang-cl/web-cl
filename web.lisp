@@ -3,6 +3,8 @@
 (in-package :web-cl)
 (load "utils.lisp")
 (load "mime.lisp")
+(load "db.lisp")
+(load "articles.lisp")
 (load "handlers.lisp")
 (load "dispatch.lisp")
 (setf *mime-table* (make-hash-table))

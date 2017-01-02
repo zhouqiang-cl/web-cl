@@ -8,8 +8,11 @@
             (rander "templates/articles.html")
             (rander "templates/article.html"))))
 
-(defun upload-article () 
-    (let ((title (post-parameter "title"))
-            (content (post-parameter "content"))
-            (itemid (genitemid)))
-    (save-article itemid title content)))
+(defun articles-handler ()
+    (case (request-method*)
+        (:GET (get-article))
+        (:POST (post-article))
+        (:PUT (put-article))))
+
+(defun serve-static-dir ()
+    (let ((path (string-left-trim "/" (request-uri*)))) (rander path)))
