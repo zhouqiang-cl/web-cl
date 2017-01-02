@@ -9,7 +9,9 @@
                         (list "id" articleid "url" (princ (concatenate 'string "/blog/articles/" articleid)))))))))
 
 (defun get-article ()
-    (let* ((articleid (car (reverse (split-sequence:split-sequence #\/ (request-uri*))))) (multiple-value-setq (title content) (get-article-from-db articleid)))
-        (format nil 
-            (encode-json-plist-to-string
-                (list "title" title "content" content)))))
+    (let ((articleid (car (reverse (split-sequence:split-sequence #\/ (request-uri*))))))
+        (progn
+            (multiple-value-setq (title content) (get-article-from-db articleid)))
+            (format nil 
+                (encode-json-plist-to-string
+                    (list "title" title "content" content)))))
