@@ -2,13 +2,11 @@
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-    /*padding-top: 65px;*/
 }
 .input-group {
     width: 80%;
 }
 #title {
-    /*width: 80%;*/
     margin-top: 40px;
 }
 .editor {
@@ -16,19 +14,11 @@
 }
 #blog-textarea {
     width: 80%;
-    /*margin-top: 60px;*/
-    /*padding-top: 65px;*/
-    /*height: 30%;*/
-    /*height: 300px;*/
-    /*display: block;*/
 }
 #submit {
     margin-top: 20px;
     margin-left: 93%;
 }
-/*.CodeMirror-scroll {
-    min-height: 200px;
-}*/
 .CodeMirror {
     height: 400px;
 }
@@ -39,12 +29,11 @@
     padding-top: 20px;
 }
 .content {
-    /*margin-top: 40px;*/
     padding: 2% 8% 5% 8%;
     border: 1px solid LightGrey;
     font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
-.content h2 {
+.content h2 h3 h4 h5 h6 {
     color: #666666;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, Helvetica, STKaiti, SimSun, serif;
 }
