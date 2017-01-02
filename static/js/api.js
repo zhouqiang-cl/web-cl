@@ -41,15 +41,30 @@ function update_article(title, content, item_id) {
     });
 }
 
-function get_article(item_id) {
-    url = "/api/v1/blog/articles" + item_id
+function get_article(item_id, titleid, contentid) {
+    url = "/api/v1/blog/articles/" + item_id
     $.ajax({
         url:url,
         type:"GET",
         dataType:"json",
         async:"false",
         success: function (data) {
-            data = data;
+            title = data["title"];
+            content = data["content"];
+            titleid.text(title)
+            // var marked = require('marked');
+            console.log(content)
+            marked.setOptions({
+              renderer: new marked.Renderer(),
+              gfm: true,
+              tables: true,
+              breaks: false,
+              pedantic: false,
+              sanitize: false,
+              smartLists: true,
+              smartypants: false
+            });
+            contentid.html(marked(content))
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);

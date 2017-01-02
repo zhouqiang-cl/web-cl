@@ -14,4 +14,4 @@
             (multiple-value-setq (title content) (get-article-from-db articleid)))
             (format nil 
                 (encode-json-plist-to-string
-                    (list "title" title "content" content)))))
+                    (list "title" (car title) "content" (car content))))))
