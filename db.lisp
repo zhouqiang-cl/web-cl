@@ -4,4 +4,5 @@
 
 (defun get-article-from-db (itemid)
     (progn (db.use "blog")
-        (db.find itemid)))
+        (values (get-element "title" (docs  (db.iter (db.find itemid :all))))
+            (get-element "content" (docs  (db.iter (db.find itemid :all)))))))
