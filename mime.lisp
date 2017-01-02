@@ -15,4 +15,4 @@
             (gethash (intern (string-upcase "default")) *mime-table*))))
 
 (defun get-file-mime-type (filename) 
-    (get-mime-type (car (reverse (split-sequence:split-sequence #\. filename)))))
+    (get-mime-type (car (last (split-sequence:split-sequence #\. filename)))))

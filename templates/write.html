@@ -18,7 +18,9 @@
     <button id="submit" class="btn">提交</button>
 </div>
 <script type="text/javascript">
-    var simplemde = new SimpleMDE({ element: $("#blog-textarea")[0] });
+    var simplemde = new SimpleMDE({ element: $("#blog-textarea")[0],
+                            indentWithTabs:false,
+                            tabSize: 2,});
     $('#submit').click(function () {
         var content = simplemde.value();
         var title = $("#title").val()

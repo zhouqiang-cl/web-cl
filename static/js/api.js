@@ -51,20 +51,18 @@ function get_article(item_id, contentid) {
         success: function (data) {
             title = data["title"];
             content = data["content"];
-            // titleid.text(title)
-            // var marked = require('marked');
-            // console.log(content)
             marked.setOptions({
-              renderer: new marked.Renderer(),
-              gfm: true,
-              tables: true,
-              breaks: false,
-              pedantic: false,
-              sanitize: false,
-              smartLists: true,
-              smartypants: false
+            //   renderer: new marked.Renderer(),
+            //   gfm: true,
+            //   tables: true,
+              breaks: true,
+            //   pedantic: false,
+            //   sanitize: false,
+            //   smartLists: true,
+            //   smartypants: false
             });
             content = "<h2>" + title + "</h2><hr>" + content
+            console.log(content)
             contentid.html(marked(content))
         },
         error: function (jqXHR, status, errorThrown) {
