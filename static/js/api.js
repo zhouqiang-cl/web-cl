@@ -41,7 +41,7 @@ function update_article(title, content, item_id) {
     });
 }
 
-function get_article(item_id, titleid, contentid) {
+function get_article(item_id, contentid) {
     url = "/api/v1/blog/articles/" + item_id
     $.ajax({
         url:url,
@@ -51,9 +51,9 @@ function get_article(item_id, titleid, contentid) {
         success: function (data) {
             title = data["title"];
             content = data["content"];
-            titleid.text(title)
+            // titleid.text(title)
             // var marked = require('marked');
-            console.log(content)
+            // console.log(content)
             marked.setOptions({
               renderer: new marked.Renderer(),
               gfm: true,
@@ -64,6 +64,7 @@ function get_article(item_id, titleid, contentid) {
               smartLists: true,
               smartypants: false
             });
+            content = "<h2>" + title + "</h2><hr>" + content
             contentid.html(marked(content))
         },
         error: function (jqXHR, status, errorThrown) {

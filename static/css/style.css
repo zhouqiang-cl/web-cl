@@ -32,3 +32,19 @@
 .CodeMirror {
     height: 400px;
 }
+.article {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 20px;
+}
+.content {
+    /*margin-top: 40px;*/
+    padding: 2% 8% 5% 8%;
+    border: 1px solid LightGrey;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.content h2 {
+    color: #666666;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Helvetica, STKaiti, SimSun, serif;
+}

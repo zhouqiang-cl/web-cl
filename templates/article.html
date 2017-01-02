@@ -1,19 +1,17 @@
 <head>
     <title>Free</title>
-    <!-- <link rel="stylesheet" href="/static/css/simplemde.min.css" type="text/css" media="screen" charset="utf-8"> -->
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="screen" charset="utf-8">
     <script src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/marked.js"></script>
     <script type="text/javascript" src="/static/js/api.js"></script>
 </head>
 <div class="article">
-    <div class="title" id="title"></div>
+    <!-- <div class="title" id="title"></div> -->
     <div class="content" id="content"></div>
 </div>
 <script type="text/javascript">
     $( document ).ready(function() {
         article_id = window.location.pathname.split("/")[3];
-        // console.log(article_id)
-        // $("#title").text("x")
-        get_article(article_id, $("#title"), $("#content"))
+        get_article(article_id, $("#content"))
     })
 </script>
