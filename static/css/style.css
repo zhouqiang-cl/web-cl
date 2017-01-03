@@ -37,3 +37,10 @@
     color: #666666;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, Helvetica, STKaiti, SimSun, serif;
 }
+.login {
+    width:20%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    border: 1px solid LightGrey;
+}

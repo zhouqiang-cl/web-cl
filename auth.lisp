@@ -21,16 +21,29 @@
 (defun user-authorization (user)
     (set-web-cookie "user" user))
 
-(defun auth ()
-    (let (  (user (post-parameter "username"))
-            (passwd (post-parameter "password")))
-        (if (user-authentication user passwd)
-            (user-authorization user)
-            (redirect-to-login))))
 
 (defun authed ()
     (let ((name (get-web-cookie "user")))
         (gethash (intern (string-upcase name)) *admin-user-table* )))
+
+(defun login-success (redirect-url)
+    (format nil
+        (encode-json-plist-to-string
+            (list "redirect-url" redirect-url "status" "success"))))
+
+(defun login-failed ()
+    (format nil
+        (encode-json-plist-to-string
+            (list "redirect-url" "/login" "status" "failed"))))
+
+(defun auth ()
+    (let (  (user (post-parameter "username"))
+            (passwd (post-parameter "password")))
+        (if (user-authentication user passwd)
+            (progn
+                (user-authorization user)
+                (login-success "/write"))
+            (login-failed))))
 
 (defmacro admin (func) 
     `(if (authed) 
