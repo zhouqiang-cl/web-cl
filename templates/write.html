@@ -20,7 +20,13 @@
 <script type="text/javascript">
     var simplemde = new SimpleMDE({ element: $("#blog-textarea")[0],
                             indentWithTabs:false,
-                            tabSize: 2,});
+                            tabSize: 2,
+                            autosave: {
+                                enabled: true,
+                                uniqueId: "MyUniqueID",
+                                delay: 1000,
+                            },
+                        });
     $('#submit').click(function () {
         var content = simplemde.value();
         var title = $("#title").val()
