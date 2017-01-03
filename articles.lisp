@@ -10,11 +10,10 @@
 
 (defun get-article ()
     (let ((articleid (car (last (split-sequence:split-sequence #\/ (request-uri*))))))
-        (progn
-            (multiple-value-setq (title content) (get-article-from-db articleid)))
+        (multiple-value-bind (title content) (get-article-from-db articleid)
             (format nil 
                 (encode-json-plist-to-string
-                    (list "title" (car title) "content" (car content))))))
+                    (list "title" (car title) "content" (car content)))))))
 
 (defun put-article ()
     (let ((title (post-parameter "title"))

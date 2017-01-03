@@ -2,4 +2,5 @@
     ("/static" serve-static-dir)
     ("/api/v1/blog/articles" articles-handler)
     ("/blog/articles" article-handler)
+    ("/login" login-handler)
     ("/" index-handler)))

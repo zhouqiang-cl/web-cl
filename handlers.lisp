@@ -14,5 +14,10 @@
         (:POST (post-article))
         (:PUT (put-article))))
 
+(defun login-handler ()
+    (case (request-method*)
+        (:GET (login))
+        (:POST (auth))))
+
 (defun serve-static-dir ()
     (let ((path (string-left-trim "/" (request-uri*)))) (rander path)))
