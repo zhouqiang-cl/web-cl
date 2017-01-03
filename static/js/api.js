@@ -1,4 +1,4 @@
-function post_article(title, content) {
+function post_article(title, content, mdeinstance) {
     data = {};
     data["title"] = title;
     data["content"] = content;
@@ -11,7 +11,8 @@ function post_article(title, content) {
         success: function (data) {
             item_id = data["id"];
             url =  data["url"];
-            window.location.href = url
+            window.location.href = url;
+            mdeinstance.clearAutosavedValue();
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);
