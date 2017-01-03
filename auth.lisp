@@ -2,11 +2,11 @@
     (rander "templates/login.html"))
 
 (defun redirect-to-login ()
-    (login))
+    (redirect "/login"))
 
 
 (defun set-web-cookie (name value)
-    (set-cookie name :value value :secure t))
+    (set-cookie name :value value))
 
 (defun get-web-cookie (name)
     (cookie-in name))
@@ -24,7 +24,15 @@
 
 (defun authed ()
     (let ((name (get-web-cookie "user")))
-        (gethash (intern (string-upcase name)) *admin-user-table* )))
+        (progn
+            (print "in authed")
+            (print (gethash (intern (string-upcase name)) *admin-user-table*))
+            (print name)
+            (print "end authed")
+            (gethash (intern (string-upcase name)) *admin-user-table*))))
+
+(defun auth-test ()
+    (print "test"))
 
 (defun login-success (redirect-url)
     (format nil
@@ -42,10 +50,10 @@
         (if (user-authentication user passwd)
             (progn
                 (user-authorization user)
-                (login-success "/write"))
+                (login-success "/"))
             (login-failed))))
 
-(defmacro admin (func) 
+(defmacro require-admin-permission (func) 
     `(if (authed) 
         ,func
         (redirect-to-login)))

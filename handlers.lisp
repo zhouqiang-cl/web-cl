@@ -1,6 +1,6 @@
 (defun index-handler () (format nil "welcome to zhouqiang's blog"))
 
-(defun write-handler () (rander "templates/write.html"))
+(defun write-handler () (require-admin-permission (rander "templates/write.html")))
 
 (defun article-handler () 
     (let ((path (request-uri*)))
@@ -10,9 +10,9 @@
 
 (defun articles-handler ()
     (case (request-method*)
-        (:GET (get-article))
-        (:POST (post-article))
-        (:PUT (put-article))))
+        (:GET  (get-article))
+        (:POST (require-admin-permission (post-article)))
+        (:PUT (require-admin-permission (put-article)))))
 
 (defun login-handler ()
     (case (request-method*)
