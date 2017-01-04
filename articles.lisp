@@ -10,14 +10,18 @@
 
 
 (defun get-article (articleid)
+    (progn
+        (setf (content-type*) "application/json")
         (multiple-value-bind (title content) (get-article-from-db articleid)
             (format nil 
                 (encode-json-plist-to-string
-                    (list "title" (car title) "content" (car content))))))
+                    (list "title" (car title) "content" (car content)))))))
 
 (defun get-articles ()
-    (format nil
-        (encode-json-to-string (get-articles-from-db))))
+    (progn
+        (setf (content-type*) "application/json")
+        (format nil
+            (encode-json-to-string (get-articles-from-db)))))
 
 
 (defun handler-articles ()
