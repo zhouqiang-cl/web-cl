@@ -12,6 +12,5 @@
 
 (defun genitemid ()  (uuid-to-string (make-v4-uuid)))
 
-(defun unescape_url (s) (remove #\\ s))
 
 (defun start-web () (start (make-instance 'easy-acceptor :port 8080)))

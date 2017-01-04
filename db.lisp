@@ -10,4 +10,4 @@
 (defun get-articles-from-db ()
     (progn (db.use "blog")
         (loop for item in (docs (db.iter (db.find "articles" :all)))
-            collect (list (cons "id" (get-element "id" item)) (cons "title" (get-element "title" item))))))
+            collect (list (cons "id" (get-element "id" item)) (cons "url" (concatenate 'string "/blog/articles/" (get-element "id" item))) (cons "title" (get-element "title" item))))))

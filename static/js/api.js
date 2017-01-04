@@ -65,7 +65,7 @@ function get_article(item_id, contentid) {
     });
 }
 
-function get_articles() {
+function get_articles(contentid) {
     url = "/api/v1/blog/articles"
     $.ajax({
         url:url,
@@ -73,10 +73,20 @@ function get_articles() {
         dataType:"json",
         async:"false",
         success: function (data) {
-            data = data;
+            content = "<table>"
+
+            for (item in data) {
+                content = content + construct_item(data[item])
+            } 
+            content += "</table>"
+            contentid.html(content)
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);
         }
     });
+}
+function construct_item(item) {
+    var item_html = "<tr><td><a href=" + item["url"] + ">" + item["title"] + "</a></td></tr>"
+    return item_html
 }

@@ -4,9 +4,8 @@
             (articleid (genitemid)))
         (progn (save-article-to-db articleid title content)
             (format nil 
-                (unescape_url
-                    (encode-json-plist-to-string 
-                        (list "id" articleid "url" (princ (concatenate 'string "/blog/articles/" articleid)))))))))
+                (encode-json-plist-to-string 
+                    (list "id" articleid "url" (concatenate 'string "/blog/articles/" articleid)))))))
 
 
 (defun get-article (articleid)
@@ -36,6 +35,5 @@
             (articleid (car (last (split-sequence:split-sequence #\/ (request-uri*))))))
         (progn (save-article-to-db articleid title content)
             (format nil 
-                (unescape_url
-                    (encode-json-plist-to-string 
-                        (list "id" articleid "url" (princ (concatenate 'string "/blog/articles/" articleid)))))))))
+                (encode-json-plist-to-string 
+                    (list "id" articleid "url" (concatenate 'string "/blog/articles/" articleid)))))))

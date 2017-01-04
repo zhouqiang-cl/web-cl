@@ -2,9 +2,9 @@
 
 (defun write-handler () (require-admin-permission (rander "templates/write.html")))
 
-(defun article-handler () 
+(defun articles-template () 
     (let ((path (request-uri*)))
-        (if (string= (string-right-trim "/" path) "/articles")
+        (if (string= (string-right-trim "/" path) "/blog/articles")
             (rander "templates/articles.html")
             (rander "templates/article.html"))))
 
