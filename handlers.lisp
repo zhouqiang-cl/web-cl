@@ -10,7 +10,7 @@
 
 (defun articles-handler ()
     (case (request-method*)
-        (:GET  (get-article))
+        (:GET  (handler-articles))
         (:POST (require-admin-permission (post-article)))
         (:PUT (require-admin-permission (put-article)))))
 
