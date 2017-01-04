@@ -1,4 +1,4 @@
-(defun index-handler () (format nil "welcome to zhouqiang's blog"))
+(defun index-handler () (redirect "/blog/articles"))
 
 (defun write-handler () (require-admin-permission (rander "templates/write.html")))
 
