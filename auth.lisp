@@ -24,15 +24,7 @@
 
 (defun authed ()
     (let ((name (get-web-cookie "user")))
-        (progn
-            (print "in authed")
-            (print (gethash (intern (string-upcase name)) *admin-user-table*))
-            (print name)
-            (print "end authed")
-            (gethash (intern (string-upcase name)) *admin-user-table*))))
-
-(defun auth-test ()
-    (print "test"))
+            (gethash (intern (string-upcase name)) *admin-user-table*)))
 
 (defun login-success (redirect-url)
     (format nil
