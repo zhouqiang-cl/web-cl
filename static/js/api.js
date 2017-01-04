@@ -73,7 +73,7 @@ function get_articles(contentid) {
         dataType:"json",
         async:"false",
         success: function (data) {
-            content = '<table class="table">
+            content = '<table class="table article-table">'
             for (item in data) {
                 content = content + construct_item(data[item])
             } 
