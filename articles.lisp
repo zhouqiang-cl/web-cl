@@ -1,3 +1,4 @@
+(in-package :web-cl)
 (defun post-article ()
     (let ((title (post-parameter "title"))
             (content (post-parameter "content"))

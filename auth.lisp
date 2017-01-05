@@ -1,3 +1,5 @@
+(in-package :web-cl)
+(defvar *admin-user-table* (make-hash-table))
 (defun login ()
     (rander "templates/login.html"))
 

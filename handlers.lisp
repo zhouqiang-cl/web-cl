@@ -1,3 +1,9 @@
+(in-package :web-cl)
+
+(defun rander (path)
+    (let ((mime-type (get-file-mime-type path)))
+         (handle-static-file path mime-type)))
+
 (defun index-handler () (redirect "/blog/articles"))
 
 (defun write-handler () (require-admin-permission (rander "templates/write.html")))

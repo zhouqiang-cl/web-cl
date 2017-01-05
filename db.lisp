@@ -1,3 +1,4 @@
+(in-package :web-cl)
 (defun save-article-to-db (itemid title content)
     (progn (db.use "blog")
         (db.insert "articles" (kv (kv "id" itemid) (kv "title" title) (kv "content" content)))))

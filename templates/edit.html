@@ -1,0 +1,38 @@
+<head>
+<link rel="stylesheet" href="/static/css/simplemde.min.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="screen" charset="utf-8">
+<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/simplemde.min.js"></script>
+<script type="text/javascript" src="/static/js/api.js"></script>
+<title>Free</title>
+</head>
+
+<div class="editor_area">
+    <div class="input-group">
+        <input type="text" class="form-control" aria-label="..." id="title" placeholder="标题">
+    </div>
+    <div class="editor">
+        <textarea id="blog-textarea" placeholder="写..."></textarea>
+    </div>
+    <button id="submit" class="btn">提交</button>
+</div>
+<script type="text/javascript">
+    article_id = window.location.pathname.split("/")[3];
+
+    var simplemde = new SimpleMDE({ element: $("#blog-textarea")[0],
+                            indentWithTabs:false,
+                            tabSize: 2,
+                            autosave: {
+                                enabled: true,
+                                uniqueId: article_id,
+                                delay: 1000,
+                            },
+                        });
+    get_article_for_edit(article_id, simplemde)
+    $('#submit').click(function () {
+        var content = simplemde.value();
+        var title = $("#title").val()
+        update_article(title, content, article_id, simplemde)
+    })
+</script>
