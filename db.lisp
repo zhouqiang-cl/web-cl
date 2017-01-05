@@ -2,6 +2,10 @@
     (progn (db.use "blog")
         (db.insert "articles" (kv (kv "id" itemid) (kv "title" title) (kv "content" content)))))
 
+(defun update-article-to-db (itemid title content)
+    (progn (db.use "blog")
+        (db.update "articles" (kv "id" itemid) (kv (kv "id" itemid) (kv "title" title) (kv "content" content)))))
+
 (defun get-article-from-db (itemid)
     (progn (db.use "blog")
         (values (get-element "title" (docs  (db.iter (db.find "articles" (kv "id" itemid)))))

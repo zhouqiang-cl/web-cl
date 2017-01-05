@@ -3,10 +3,13 @@
 (defun write-handler () (require-admin-permission (rander "templates/write.html")))
 
 (defun articles-template () 
-    (let ((path (request-uri*)))
-        (if (string= (string-right-trim "/" path) "/blog/articles")
-            (rander "templates/articles.html")
-            (rander "templates/article.html"))))
+    (let ((last-path (car (last (split-sequence:split-sequence #\/ (request-uri*))))))
+        (progn
+            (print last-path)
+        (case (intern (string-upcase last-path))
+            (articles (rander "templates/articles.html"))
+            (edit (rander "templates/edit.html"))
+            (t (rander "templates/article.html"))))))
 
 (defun articles-handler ()
     (case (request-method*)

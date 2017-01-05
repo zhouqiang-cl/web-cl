@@ -20,11 +20,11 @@ function post_article(title, content, mdeinstance) {
     });
 }
 
-function update_article(title, content, item_id) {
+function update_article(title, content, item_id, mdeinstance) {
     data = {};
     data["title"] = title;
     data["content"] = content;
-    url = "/api/v1/blog/articles" + item_id
+    url = "/api/v1/blog/articles/" + item_id
     $.ajax({
         url:url,
         type:"PUT",
@@ -34,7 +34,8 @@ function update_article(title, content, item_id) {
         success: function (data) {
             item_id = data["id"];
             url =  data["url"];
-            window.location(url)
+            window.location.href = url;
+            mdeinstance.clearAutosavedValue();
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);
@@ -58,6 +59,26 @@ function get_article(item_id, contentid) {
             content = "<h2>" + title + "</h2><hr>" + content
             console.log(content)
             contentid.html(marked(content))
+        },
+        error: function (jqXHR, status, errorThrown) {
+            window.alert(jqXHR.message);
+        }
+    });
+}
+
+function get_article_for_edit(item_id, simplemde) {
+    url = "/api/v1/blog/articles/" + item_id
+    $.ajax({
+        url:url,
+        type:"GET",
+        dataType:"json",
+        async:"false",
+        success: function (data) {
+            title = data["title"];
+            content = data["content"];
+            $("#title").val(title)
+            simplemde.value(content)
+            // $("#title").val(title)            
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);

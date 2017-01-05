@@ -32,8 +32,8 @@
 (defun put-article ()
     (let ((title (post-parameter "title"))
             (content (post-parameter "content"))
-            (articleid (car (last (split-sequence:split-sequence #\/ (request-uri*))))))
-        (progn (save-article-to-db articleid title content)
+            (articleid (cadr (reverse (split-sequence:split-sequence #\/ (request-uri*))))))
+        (progn (update-article-to-db articleid title content)
             (format nil 
                 (encode-json-plist-to-string 
                     (list "id" articleid "url" (concatenate 'string "/blog/articles/" articleid)))))))
