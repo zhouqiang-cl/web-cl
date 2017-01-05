@@ -1,18 +1,18 @@
 (in-package :web-cl)
 (defun save-article-to-db (itemid title content)
     (progn (db.use "blog")
-        (db.insert "articles" (kv (kv "id" itemid) (kv "title" title) (kv "content" content)))))
+        (db.insert "articles" (kv (kv "_id" itemid) (kv "title" title) (kv "content" content)))))
 
 (defun update-article-to-db (itemid title content)
     (progn (db.use "blog")
-        (db.update "articles" (kv "id" itemid) (kv (kv "id" itemid) (kv "title" title) (kv "content" content)))))
+        (db.update "articles" (kv "_id" itemid) (kv (kv "_id" itemid) (kv "title" title) (kv "content" content)))))
 
 (defun get-article-from-db (itemid)
     (progn (db.use "blog")
-        (values (get-element "title" (docs  (db.iter (db.find "articles" (kv "id" itemid)))))
-            (get-element "content" (docs  (db.iter (db.find "articles" (kv "id" itemid))))))))
+        (values (get-element "title" (docs  (db.iter (db.find "articles" (kv "_id" itemid)))))
+            (get-element "content" (docs  (db.iter (db.find "articles" (kv "_id" itemid))))))))
 
 (defun get-articles-from-db ()
     (progn (db.use "blog")
         (loop for item in (docs (db.iter (db.find "articles" :all)))
-            collect (list (cons "id" (get-element "id" item)) (cons "url" (concatenate 'string "/blog/articles/" (get-element "id" item))) (cons "title" (get-element "title" item))))))
+            collect (list (cons "id" (get-element "_id" item)) (cons "url" (concatenate 'string "/blog/articles/" (get-element "_id" item))) (cons "title" (get-element "title" item))))))

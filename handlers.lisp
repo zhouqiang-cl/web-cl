@@ -10,18 +10,19 @@
 
 (defun articles-template () 
     (let ((last-path (car (last (split-sequence:split-sequence #\/ (request-uri*))))))
-        (progn
-            (print last-path)
         (case (intern (string-upcase last-path))
             (articles (rander "templates/articles.html"))
             (edit (rander "templates/edit.html"))
-            (t (rander "templates/article.html"))))))
+            (t (rander "templates/article.html")))))
 
 (defun articles-handler ()
     (case (request-method*)
         (:GET  (handler-articles))
         (:POST (require-admin-permission (post-article)))
         (:PUT (require-admin-permission (put-article)))))
+
+(defun article-update-handler ()
+    (require-admin-permission (put-article)))
 
 (defun login-handler ()
     (case (request-method*)

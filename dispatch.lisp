@@ -1,6 +1,7 @@
 (in-package :web-cl)
 (dispatch '(("/write" write-handler)
     ("/static" serve-static-dir)
+    ("/api/v1/blog/articles/update" article-update-handler)
     ("/api/v1/blog/articles" articles-handler)
     ("/blog/articles" articles-template)
     ("/login" login-handler)

@@ -24,10 +24,10 @@ function update_article(title, content, item_id, mdeinstance) {
     data = {};
     data["title"] = title;
     data["content"] = content;
-    url = "/api/v1/blog/articles/" + item_id
+    url = "/api/v1/blog/articles/update/" + item_id
     $.ajax({
         url:url,
-        type:"PUT",
+        type:"POST",
         dataType:"json",
         async:"false",
         data:data,
