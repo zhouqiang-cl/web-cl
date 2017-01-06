@@ -53,10 +53,13 @@ function get_article(item_id, contentid) {
         success: function (data) {
             title = data["title"];
             content = data["content"];
+            views = data["views"]
             marked.setOptions({
               breaks: true,
             });
             content = "<h2>" + title + "</h2><hr>" + content
+            content += "<br/><br/><hr><br/><br/>"
+            content += "<span id='view-time'>views:  " + views + "</span>"
             console.log(content)
             contentid.html(marked(content))
         },

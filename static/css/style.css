@@ -19,6 +19,11 @@
     margin-top: 20px;
     margin-left: 93%;
 }
+#view-time {
+    /*text-align: right;*/
+    width: 40px;
+    margin-left: 85%;
+}
 .CodeMirror {
     height: 400px;
 }
@@ -33,7 +38,7 @@
     border: 1px solid LightGrey;
     font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
-.content h2 h3 h4 h5 h6 {
+h2 h3 h4 h5 h6 {
     color: #666666;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, Helvetica, STKaiti, SimSun, serif;
 }
