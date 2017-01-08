@@ -33,12 +33,7 @@
     (let ((articleid (car (last (split-sequence:split-sequence #\/ (string-right-trim "/" (request-uri*)))))))
         (if (string= articleid "articles")
             (get-articles)
-            (progn
-                (print "start articleid")
-                ; (print (split-sequence:split-sequence #\/ (request-uri*)))
-                (print articleid)
-                (print "end articleid")
-                (get-article articleid)))))
+            (get-article articleid))))
 
 (defun put-article ()
     (let ((title (post-parameter "title"))

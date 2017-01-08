@@ -78,9 +78,6 @@
 (defun increase-view-times* (itemid)
     (let* ((item (find-item itemid)) (views (+ 1 (get-element "views" item))))
         (progn
-            (print "start item")
-            (print item)
-            (print "end item")
             (add-element "views" views item)
             (save-item item))))
 
