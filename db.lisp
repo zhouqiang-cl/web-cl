@@ -1,11 +1,8 @@
 (in-package :web-cl)
 
-(defvar *mongodb-default-host* "localhost" "host to connect")
-(defvar *articles-default-db* "blog")
-(defvar *articles-default-port* 27017)
 (defvar *articles-default-collection* "articles" "the articles db connection")
 (defvar *articles-db* nil "the articles db connection")
-(defvar *mongo-name* "articles-db")
+(defvar *articles-default-db* "blog" "the default db used")
 
 (defclass articles-db ()
     (
@@ -14,14 +11,8 @@
                     :documentation "the collection which articles used")
     ))
 
-(defmethod initialize-instance :after ((articles-db articles-db) &key 
-        (host *mongodb-default-host*) 
-        (port *articles-default-port*)
-        (db   *articles-default-db*)
-        (collection *articles-default-collection*))
-        (progn 
-            (mongo :name *mongo-name* :host host :port port :db db)
-            (db.use db)))
+(defmethod initialize-instance :after ((articles-db articles-db) &key collection)
+            (db.use *articles-default-db*))
 
 ;;;help function to build or update item var
 (defun make-item (itemid &key title content views)
@@ -50,9 +41,9 @@
 
 
 ;;;db top level api
-(defun start-articles-db (&key (host #(127 0 0 1)) (port 27017) (db "blog") (collection "articles"))
+(defun start-articles-db (&key (collection "articles"))
     (setf *articles-db* (make-instance 'articles-db
-                                    :host host :port port :db db :collection collection)))
+                                    :collection collection)))
 
 (defun save-article* (itemid &key title content)
     (let ((item (find-item itemid)))
