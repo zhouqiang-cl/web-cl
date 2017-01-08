@@ -11,8 +11,8 @@
                     :documentation "the collection which articles used")
     ))
 
-(defmethod initialize-instance :after ((articles-db articles-db) &key collection)
-            (db.use *articles-default-db*))
+(defmethod initialize-instance :after ((articles-db articles-db) &key)
+                (db.use *articles-default-db*))
 
 ;;;help function to build or update item var
 (defun make-item (itemid &key title content views)
@@ -41,17 +41,14 @@
 
 
 ;;;db top level api
-(defun start-articles-db (&key (collection "articles"))
-    (setf *articles-db* (make-instance 'articles-db
-                                    :collection collection)))
+(defun start-articles-db ()
+    (setf *articles-db* (make-instance 'articles-db)))
 
 (defun save-article* (itemid &key title content)
-    (let ((item (find-item itemid)))
-        (progn
-            (defvar new-item nil)
-            (if item (setf new-item (update-item item :title title :content content))
-                (setf new-item (make-item itemid :title title :content content :views 0)))
-            (save-item new-item))))
+    (let ((new-item (if (find-item itemid)
+                        (update-item (find-item itemid) :title title :content content)
+                        (make-item itemid :title title :content content :views 0))))
+            (save-item new-item)))
 
 
 (defun get-article* (itemid)
