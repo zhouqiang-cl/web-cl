@@ -8,6 +8,7 @@
     (
         (collection :accessor collection
                     :initform "articles"
+                    :initarg :collection
                     :documentation "the collection which articles used")
     ))
 
@@ -41,8 +42,11 @@
 
 
 ;;;db top level api
-(defun start-articles-db ()
-    (setf *articles-db* (make-instance 'articles-db)))
+; (defun start-articles-db ()
+;     (setf *articles-db* (make-instance 'articles-db)))
+(defun start-articles-db (&key (collection "articles"))
+        (setf *articles-db* (make-instance 'articles-db
+                                            :collection collection)))
 
 (defun save-article* (itemid &key title content)
     (let ((new-item (if (find-item itemid)
