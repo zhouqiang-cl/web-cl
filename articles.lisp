@@ -1,9 +1,11 @@
 (in-package :web-cl)
 (defun post-article ()
-    (let ((title (post-parameter "title"))
+    (let* ((title (post-parameter "title"))
             (content (post-parameter "content"))
-            (articleid (genitemid)))
-        (progn (save-article* articleid :title title :content content)
+            (articleid (genitemid))
+            (update-time (get-unix-time))
+            (create-time update-time))
+        (progn (save-article* articleid :title title :content content :update-at update-time :create-at create-time)
             (format nil 
                 (encode-json-plist-to-string 
                     (list "id" articleid "url" (concatenate 'string "/blog/articles/" articleid)))))))
@@ -13,10 +15,10 @@
     (progn
         (setf (content-type*) "application/json")
         (increase-view-times* articleid)
-        (multiple-value-bind (title content views) (get-article* articleid)
+        (multiple-value-bind (title content views update-time create-time) (get-article* articleid)
             (format nil 
                 (encode-json-plist-to-string
-                    (list "title" title "content" content "views" views))))))
+                    (list "title" title "content" content "views" views "update-at" update-time "create-at" create-time))))))
 
 (defun get-articles ()
     (progn
@@ -38,8 +40,9 @@
 (defun put-article ()
     (let ((title (post-parameter "title"))
             (content (post-parameter "content"))
-            (articleid (car (last (split-sequence:split-sequence #\/ (request-uri*))))))
-        (progn (save-article* articleid :title title :content content)
+            (articleid (car (last (split-sequence:split-sequence #\/ (request-uri*)))))
+            (update-time (get-unix-time)))
+        (progn (save-article* articleid :title title :content content :update-at update-time)
             (format nil 
                 (encode-json-plist-to-string 
                     (list "id" articleid "url" (concatenate 'string "/blog/articles/" articleid)))))))

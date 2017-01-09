@@ -15,4 +15,5 @@
                 (:file "articles")
                 (:file "auth")
                 (:file "handlers")
-                (:file "dispatch")))
+                (:file "dispatch")
+                (:file "id")))
