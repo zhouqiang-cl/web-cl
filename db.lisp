@@ -63,11 +63,13 @@
 
 (defun get-article* (itemid)
     (let ((item (find-item itemid)))
-            (values (get-element "title" item)
+            (if item (values (get-element "title" item)
                 (get-element "content" item)
                 (get-element "views" item)
                 (get-element "update-at" item)
-                (get-element "create-at" item))))
+                (get-element "create-at" item))
+                (values nil nil nil nil)
+            )))
 
 (defun get-articles* ()
     (loop for item in (find-items)

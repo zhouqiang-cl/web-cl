@@ -66,7 +66,11 @@ function get_article(item_id, contentid) {
             contentid.html(marked(content))
         },
         error: function (jqXHR, status, errorThrown) {
-            window.alert(jqXHR.message);
+            var data = jqXHR.responseJSON;
+            if(jqXHR.status == 404) {
+                    redirect_url = data["redirect-url"];
+                    window.location.href = redirect_url;
+            }
         }
     });
 }
@@ -108,6 +112,11 @@ function get_articles(contentid) {
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);
+            // var data = jqXHR.responseJSON;
+            // switch (jqXHR.status) {
+            //     case 404:
+            //         redirect_url = data["redirect-url"]
+
         }
     });
 }

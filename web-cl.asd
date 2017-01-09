@@ -16,4 +16,5 @@
                 (:file "auth")
                 (:file "handlers")
                 (:file "dispatch")
-                (:file "id")))
+                (:file "id")
+                (:file "misc")))

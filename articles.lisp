@@ -12,13 +12,16 @@
 
 
 (defun get-article (articleid)
-    (progn
-        (setf (content-type*) "application/json")
-        (increase-view-times* articleid)
         (multiple-value-bind (title content views update-time create-time) (get-article* articleid)
-            (format nil 
-                (encode-json-plist-to-string
-                    (list "title" title "content" content "views" views "update-at" update-time "create-at" create-time))))))
+            (if title
+                (progn
+                    (increase-view-times* articleid)
+                    (setf (content-type*) "application/json")
+                    (format nil 
+                        (encode-json-plist-to-string
+                            (list "title" title "content" content "views" views "update-at" update-time "create-at" create-time))))
+                (not-found)))
+        )
 
 (defun get-articles ()
     (progn
