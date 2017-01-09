@@ -1,17 +1,5 @@
 (in-package :web-cl)
 (defvar *admin-user-table* (make-hash-table))
-(defun login ()
-    (rander "templates/login.html"))
-
-(defun redirect-to-login ()
-    (redirect "/login"))
-
-
-(defun set-web-cookie (name value)
-    (set-cookie name :value value))
-
-(defun get-web-cookie (name)
-    (cookie-in name))
 
 (defun create-admin-user (users)
     (mapcar (lambda (args)
@@ -27,16 +15,6 @@
 (defun authed ()
     (let ((name (get-web-cookie "user")))
             (gethash (intern (string-upcase name)) *admin-user-table*)))
-
-(defun login-success (redirect-url)
-    (format nil
-        (encode-json-plist-to-string
-            (list "redirect-url" redirect-url "status" "success"))))
-
-(defun login-failed ()
-    (format nil
-        (encode-json-plist-to-string
-            (list "redirect-url" "/login" "status" "failed"))))
 
 (defun auth ()
     (let (  (user (post-parameter "username"))

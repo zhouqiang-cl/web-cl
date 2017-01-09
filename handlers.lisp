@@ -4,6 +4,8 @@
 
 (defun write-handler () (require-admin-permission (rander "templates/write.html")))
 
+(defun edits-handler () (require-admin-permission (rander "templates/edit_articles.html")))
+
 (defun articles-template () 
     (let ((last-path (car (last (split-sequence:split-sequence #\/ (string-left-trim "/" (request-uri*)))))))
         (case (intern (string-upcase last-path))

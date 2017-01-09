@@ -112,15 +112,37 @@ function get_articles(contentid) {
         },
         error: function (jqXHR, status, errorThrown) {
             window.alert(jqXHR.message);
-            // var data = jqXHR.responseJSON;
-            // switch (jqXHR.status) {
-            //     case 404:
-            //         redirect_url = data["redirect-url"]
-
         }
     });
 }
+
+function get_edit_articles(contentid) {
+    url = "/api/v1/blog/articles"
+    $.ajax({
+        url:url,
+        type:"GET",
+        dataType:"json",
+        async:"false",
+        success: function (data) {
+            content = '<table class="table article-table">'
+            for (item in data) {
+                content = content + construct_edit_item(data[item])
+            } 
+            content += "</table>"
+            contentid.html(content)
+        },
+        error: function (jqXHR, status, errorThrown) {
+            window.alert(jqXHR.message);
+        }
+    });
+}
+
 function construct_item(item) {
     var item_html = "<tr><td><a href=" + item["url"] + ">" + item["title"] + "</a></td></tr>"
+    return item_html
+}
+
+function construct_edit_item(item) {
+    var item_html = "<tr><td><a href=" + item["url"] + "/edit>" + item["title"] + "</a></td></tr>"
     return item_html
 }

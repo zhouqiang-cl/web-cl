@@ -4,6 +4,7 @@
     ("/static/html" serve-static-dir)
     ("/api/v1/blog/articles/update" article-update-handler)
     ("/api/v1/blog/articles" articles-handler)
+    ("/admin" edits-handler)
     ("/blog/articles" articles-template)
     ("/login" login-handler)
     ("/" index-handler)))
