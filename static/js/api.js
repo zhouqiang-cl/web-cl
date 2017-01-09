@@ -54,12 +54,14 @@ function get_article(item_id, contentid) {
             title = data["title"];
             content = data["content"];
             views = data["views"]
+            update_at = convert_timestamp_to_daytime(data["update-at"])
             marked.setOptions({
               breaks: true,
             });
-            content = "<h2>" + title + "</h2><hr>" + content
-            content += "<br/><br/><hr><br/><br/>"
-            content += "<span id='view-time'>views:  " + views + "</span>"
+            content = "<h2>" + title + "</h2><hr>" + content;
+            content += "<br/><br/><hr><br/><br/>";
+            content += "<span id='update-at'>Update At: " + update_at + "</span>";
+            content += "<span id='view-time'>views:  " + views + "</span>";
             console.log(content)
             contentid.html(marked(content))
         },

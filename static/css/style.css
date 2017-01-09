@@ -22,7 +22,10 @@
 #view-time {
     /*text-align: right;*/
     width: 40px;
-    margin-left: 85%;
+    margin-left: 75%;
+}
+#update-at {
+    width:160px;
 }
 .CodeMirror {
     height: 400px;
