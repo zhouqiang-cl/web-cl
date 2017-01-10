@@ -17,4 +17,5 @@
                 (:file "handlers")
                 (:file "dispatch")
                 (:file "id")
-                (:file "misc")))
+                (:file "misc")
+                (:file "cookie")))
