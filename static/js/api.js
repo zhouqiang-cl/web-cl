@@ -90,7 +90,11 @@ function get_article_for_edit(item_id, simplemde) {
             // $("#title").val(title)            
         },
         error: function (jqXHR, status, errorThrown) {
-            window.alert(jqXHR.message);
+            var data = jqXHR.responseJSON;
+            if(jqXHR.status == 404) {
+                    redirect_url = data["redirect-url"];
+                    window.location.href = redirect_url;
+            }
         }
     });
 }
