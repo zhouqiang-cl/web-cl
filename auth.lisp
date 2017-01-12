@@ -1,4 +1,5 @@
 (in-package :web-cl)
+
 (defvar *admin-user-table* (make-hash-table))
 
 (defun create-admin-user (users)

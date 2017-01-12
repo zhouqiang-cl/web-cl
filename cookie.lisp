@@ -1,7 +1,7 @@
 (in-package :web-cl)
 
 (defun set-web-cookie (name value)
-    (set-cookie name :value value))
+    (set-cookie name :value value :domain "zhouqiang.site"))
 
 (defun get-web-cookie (name)
     (cookie-in name))
