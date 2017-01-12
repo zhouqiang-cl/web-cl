@@ -9,11 +9,11 @@
     (string= (gethash (intern (string-upcase user)) *admin-user-table*) passwd))
 
 (defun user-authorization (user)
-    (set-web-cookie "user" user))
+    (set-web-secure-cookie "user" user))
 
 
 (defun authed ()
-    (let ((name (get-web-cookie "user")))
+    (let ((name (get-web-secure-cookie "user")))
             (gethash (intern (string-upcase name)) *admin-user-table*)))
 
 (defun auth ()

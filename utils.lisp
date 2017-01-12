@@ -14,4 +14,14 @@
 (defun get-unix-time ()
   (universal-to-unix-time (get-universal-time)))
 
+(defun base64 (str)
+    (cl-base64:string-to-base64-string str))
+
+(defun base64decode (str)
+    (cl-base64:base64-string-to-string str))
+
+(defun sha1 (str)
+    (ironclad:byte-array-to-hex-string 
+        (ironclad:digest-sequence :sha1 (flexi-streams:string-to-octets str))))
+
 (defun start-web () (start (make-instance 'easy-acceptor :port 8080)))

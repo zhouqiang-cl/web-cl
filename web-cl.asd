@@ -7,7 +7,10 @@
                 :uuid
                 :cl-json
                 :cl-mongo
-                :split-sequence)
+                :split-sequence
+                :cl-base64
+                :ironclad
+                :flexi-streams)
   :components ((:file "packages")
                 (:file "utils")
                 (:file "db")
@@ -18,4 +21,5 @@
                 (:file "dispatch")
                 (:file "id")
                 (:file "misc")
+                (:file "secure")
                 (:file "cookie")))
