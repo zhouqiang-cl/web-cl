@@ -1,1 +1,1 @@
-# web-cl is a web server just for fun
+# web-cl is a my blog website

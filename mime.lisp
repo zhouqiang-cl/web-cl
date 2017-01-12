@@ -1,4 +1,5 @@
 (in-package :web-cl)
+
 (defvar *mime-table* (make-hash-table))
 (defvar mime-table '(
     ("css" "text/css")
