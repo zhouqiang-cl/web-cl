@@ -1,13 +1,13 @@
 (in-package :web-cl)
 
-(defvar *admin-user-table* (make-hash-table))
+(defvar *admin-user-table* (make-hash-table :test 'equal))
 
 (defun create-admin-user (users)
     (mapcar (lambda (args)
-        (setf (gethash (intern (string-upcase (car args))) *admin-user-table*) (cadr args))) users))
+        (setf (gethash (car args) *admin-user-table*) (cadr args))) users))
 
 (defun user-authentication (user passwd)
-    (string= (gethash (intern (string-upcase user)) *admin-user-table*) passwd))
+    (string= (gethash user *admin-user-table*) passwd))
 
 (defun user-authorization (user)
     (set-web-secure-cookie "user" user))
@@ -24,7 +24,7 @@
             (progn
                 (user-authorization user)
                 (login-success "/"))
-            (login-failed))))
+	(login-failed))))
 
 (defmacro require-admin-permission (func) 
     `(if (authed) 
