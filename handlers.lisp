@@ -8,10 +8,11 @@
 
 (defun articles-template () 
     (let ((last-path (car (last (split-sequence:split-sequence #\/ (string-left-trim "/" (request-uri*)))))))
-        (case (last-path)
-            ("articles" (rander "templates/articles.html"))
-            ("edit" (rander "templates/edit.html"))
-            (t (rander "templates/article.html")))))
+        (cond ((string= last-path "articles")
+                (rander "templates/articles.html"))
+              ((string= last-path "edit")
+                (rander "templates/edit.html"))
+              ((t (rander "templates/article.html"))))))
 
 (defun articles-handler ()
     (case (request-method*)
