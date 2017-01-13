@@ -15,7 +15,7 @@
 
 (defun authed ()
     (let ((name (get-web-secure-cookie "user")))
-            (gethash (intern (string-upcase name)) *admin-user-table*)))
+            (gethash name *admin-user-table*)))
 
 (defun auth ()
     (let (  (user (post-parameter "username"))

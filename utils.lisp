@@ -24,4 +24,4 @@
     (ironclad:byte-array-to-hex-string 
         (ironclad:digest-sequence :sha1 (flexi-streams:string-to-octets str))))
 
-(defun start-web () (start (make-instance 'easy-acceptor :port 8080)))
+(defun start-web () (start (make-instance 'easy-acceptor :port 8081)))
