@@ -20,9 +20,6 @@
 (defun decode-signed-value (name value)
   (let* ((parts (split-sequence:split-sequence #\| (string-trim "|" value)))
         (signature (create-signature *cookie-secret* name (car parts) (cadr parts))))
-      (progn
-        (print signature)
-        (print (caddr parts))
       (if (string= signature (caddr parts))
           (base64decode (car parts))
-          nil))))
+          nil)))
