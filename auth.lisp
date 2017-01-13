@@ -31,4 +31,4 @@
         ,func
         (redirect-to-login)))
 
-(create-admin-user '(("zhouqiang" "zhouqiang-passwd")))
+(create-admin-user '(("wxh" "ilwxh1234")))

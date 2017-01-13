@@ -37,9 +37,13 @@
 
 (defun handler-articles ()
     (let ((articleid (car (last (split-sequence:split-sequence #\/ (string-right-trim "/" (request-uri*)))))))
+	(progn
+		(print (request-uri*))
+		(print articleid)
+		(print "end")
         (if (string= articleid "articles")
             (get-articles)
-            (get-article articleid))))
+            (get-article articleid)))))
 
 (defun put-article ()
     (let ((title (post-parameter "title"))
